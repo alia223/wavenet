@@ -66,7 +66,7 @@ public class Program
         while (!routeFound)
         {
             //Starting from currentPosition[i, j], in a matrix grid[i, j]: Move up: [i - 1, j]; Move Right: [i, j + 1]; Move Down: [i + 1, j]; Move Left: [i, j - 1];
-            //Need to check these indexes, if out of bounds, set to -1, otherwise set to actual value
+            //Need to check these indices, if out of bounds, set to -1, otherwise set to actual value
             int indexRequiredToMoveUp = currentPosition[0] - 1 >= 0 ? currentPosition[0] - 1 : -1;
             int indexRequiredToMoveRight = currentPosition[1] + 1 < grid.GetLength(1) ? currentPosition[1] + 1 : -1;
             int indexRequiredToMoveDown = currentPosition[0] + 1 < grid.GetLength(0) ? currentPosition[0] + 1 : -1;
@@ -88,13 +88,14 @@ public class Program
                 MoveToNewCell(ref visitedCells, ref indexRequiredToMoveUp, ref currentPath, ref currentPosition, new int[] { indexRequiredToMoveDown, currentPosition[1] }, ref distance);
             else if (canGoLeft)
                 MoveToNewCell(ref visitedCells, ref indexRequiredToMoveUp, ref currentPath, ref currentPosition, new int[] { currentPosition[0], indexRequiredToMoveLeft }, ref distance);           
-            //Can't go in any direction from current position due to OutOfBounds or RT.Closed
+            //Can't go in any direction from current position due to OutOfBounds or RT.Closed, so first check if we have reach RT.End
+            //Backtrack if we haven't reached RT.End
             else if (grid[currentPosition[0], currentPosition[1]] != RT.End) {
                 //Mark the current cell as visited
                 visitedCells.Add(currentPosition);
                 //If it is not possible to backtrack [any further], exit else clause
                 if (currentPath.Count <= 1) break;
-                //Otherwise, if it is possible, and RT.End has still not been reached, either pop cell off of currentPath to backtrack,
+                //Otherwise, if it is possible, and RT.End has still not been reached, pop cell off of currentPath to backtrack,
                 currentPath.RemoveAt(currentPath.Count - 1);
                 currentPosition = new int[] { currentPath[currentPath.Count - 1][0], currentPath[currentPath.Count - 1][1] };
                 distance--;
