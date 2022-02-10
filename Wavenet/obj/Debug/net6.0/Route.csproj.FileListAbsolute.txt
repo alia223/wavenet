@@ -42,3 +42,4 @@ C:\Users\asfan\Downloads\wavenet-assessment\wavenet\Wavenet\obj\Debug\net6.0\Rou
 C:\Users\asfan\Downloads\wavenet-assessment\wavenet\Wavenet\obj\Debug\net6.0\ref\Route.dll
 C:\Users\asfan\Downloads\wavenet-assessment\wavenet\Wavenet\obj\Debug\net6.0\Route.pdb
 C:\Users\asfan\Downloads\wavenet-assessment\wavenet\Wavenet\obj\Debug\net6.0\Route.genruntimeconfig.cache
+C:\Users\asfan\Downloads\wavenet-assessment\wavenet\Wavenet\obj\Debug\net6.0\Route.csproj.AssemblyReference.cache

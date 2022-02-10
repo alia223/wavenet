@@ -46,7 +46,7 @@ public class Program
         }
     }
 
-    private static void MoveToNewCell(ref List<int[]> visitedCells, ref int index, ref List<int[]> currentPath, ref int[] currentPosition, int[] nextPosition, ref int distance)
+    private static void MoveToNewCell(ref List<int[]> visitedCells, ref List<int[]> currentPath, ref int[] currentPosition, int[] nextPosition, ref int distance)
     {
         visitedCells.Add(currentPosition);
         currentPosition = nextPosition;
@@ -81,13 +81,13 @@ public class Program
             //Move to the first valid cell that is found
             //We can check other routes later via backtracking, if needed
             if (canGoUp)
-                MoveToNewCell(ref visitedCells, ref indexRequiredToMoveUp, ref currentPath, ref currentPosition, new int[] { indexRequiredToMoveUp, currentPosition[1] }, ref distance);
+                MoveToNewCell(ref visitedCells, ref currentPath, ref currentPosition, new int[] { indexRequiredToMoveUp, currentPosition[1] }, ref distance);
             else if (canGoRight)
-                MoveToNewCell(ref visitedCells, ref indexRequiredToMoveUp, ref currentPath, ref currentPosition, new int[] { currentPosition[0], indexRequiredToMoveRight }, ref distance);
+                MoveToNewCell(ref visitedCells, ref currentPath, ref currentPosition, new int[] { currentPosition[0], indexRequiredToMoveRight }, ref distance);
             else if (canGoDown)
-                MoveToNewCell(ref visitedCells, ref indexRequiredToMoveUp, ref currentPath, ref currentPosition, new int[] { indexRequiredToMoveDown, currentPosition[1] }, ref distance);
+                MoveToNewCell(ref visitedCells, ref currentPath, ref currentPosition, new int[] { indexRequiredToMoveDown, currentPosition[1] }, ref distance);
             else if (canGoLeft)
-                MoveToNewCell(ref visitedCells, ref indexRequiredToMoveUp, ref currentPath, ref currentPosition, new int[] { currentPosition[0], indexRequiredToMoveLeft }, ref distance);           
+                MoveToNewCell(ref visitedCells, ref currentPath, ref currentPosition, new int[] { currentPosition[0], indexRequiredToMoveLeft }, ref distance);           
             //Can't go in any direction from current position due to OutOfBounds or RT.Closed, so first check if we have reach RT.End
             //Backtrack if we haven't reached RT.End
             else if (grid[currentPosition[0], currentPosition[1]] != RT.End) {
